@@ -1,13 +1,17 @@
-import React, { useState } from "react";
+import React from "react";
+import { Route, Routes } from "react-router-dom";
+import Details from "./routes/Details";
+import Home from "./routes/Home";
 
 function App() {
-  const [count, setCount] = useState(0);
 
   return (
-    <p className="bg-gradient-to-r from-emerald-300 to-sky-300 bg-clip-text text-5xl font-black text-transparent selection:bg-transparent">
-      Vite + React + Tailwindcss v3
-    </p>
-        
+    <>
+      <Routes>
+        <Route path="/" element={<Home/>} />
+        <Route path="/details" element={<Details/>} />
+      </Routes>
+    </>
   );
 }
 
