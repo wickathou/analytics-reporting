@@ -1,20 +1,20 @@
 import React from 'react'
 
-function Item() {
+function Item({page}) {
   return (
     <li className='w-full h-52 bg-teal-400 border p-2 flex flex-col'>
       <div className="relative">
         <span className='absolute top-0 right-0'>Icon</span>
       </div>
       <div className='h-3/4 bg-blue-400'>
-        Graph
+        {page.data.img}
       </div>
       <div className='flex flex-col items-end'>
         <h3>
-          A title
+          {page.title}
         </h3>
         <p>
-          A value
+          {page.data.views}
         </p>
       </div>
     </li>
