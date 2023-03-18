@@ -49,16 +49,16 @@ const initialState = {
 const mockStore = configureMockStore()(initialState);
 
 const mockedItem = {
-      itemId: 'test1',
-      title: 'title',
-      data: {
-        img: 'imgUrl',
-        views: 10,
-        activeUsers: 20,
-        bounceRate: 30,
-        category: 'category',
-      },
-    };
+  itemId: 'test1',
+  title: 'title',
+  data: {
+    img: 'imgUrl',
+    views: 10,
+    activeUsers: 20,
+    bounceRate: 30,
+    category: 'category',
+  },
+};
 
 describe('Item tests', () => {
   test('to render item: ', () => {
@@ -75,7 +75,7 @@ describe('Header tests', () => {
   test('to render Header: ', () => {
     render(
       <BrowserRouter>
-        <Header route={'home'} />
+        <Header route="home" />
       </BrowserRouter>,
     );
     expect(screen).toMatchSnapshot();
@@ -99,8 +99,8 @@ describe('DetailList tests', () => {
   test('to render DetailList: ', () => {
     render(
       <BrowserRouter>
-        <DetailList page={mockedItem}/>
-      </BrowserRouter>
+        <DetailList page={mockedItem} />
+      </BrowserRouter>,
     );
     expect(screen).toMatchSnapshot();
   });
