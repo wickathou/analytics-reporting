@@ -13,14 +13,15 @@
     "js-linter-fix": "npx eslint \"**/*.{js,jsx}\" --fix"
   },
   "dependencies": {
+    "@reduxjs/toolkit": "^1.9.3",
+    "airtable": "^0.11.6",
+    "chart.js": "^4.2.1",
     "gh-pages": "^5.0.0",
     "react": "^17.0.2",
-    "react-dom": "^17.0.2",
     "react-chartjs-2": "^5.2.0",
+    "react-dom": "^17.0.2",
     "react-redux": "^8.0.5",
     "react-router-dom": "^6.8.1",
-    "@reduxjs/toolkit": "^1.9.3",
-    "chart.js": "^4.2.1",
     "uuid": "^9.0.0"
   },
   "devDependencies": {

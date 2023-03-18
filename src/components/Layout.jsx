@@ -1,12 +1,12 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useSelector } from 'react-redux'
+import CategorySelector from './CategorySelector'
 import DetailList from './DetailList'
 import Header from './Header'
 import Hero from './Hero'
 import ItemList from './ItemList'
 
 function Layout({route}) {
-  const {categories} = useSelector((store) => store.categories)
   let content = {
     mainContent: '',
     spacerContent: '',
@@ -14,7 +14,7 @@ function Layout({route}) {
   switch (route) {
     case 'home':
       content.mainContent = <ItemList/>
-      content.spacerContent = `Category: ${categories[0]}`
+      content.spacerContent = <CategorySelector />
       break;
     case 'details':
       content.mainContent = <DetailList />

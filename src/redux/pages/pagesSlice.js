@@ -2,76 +2,50 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { v4 as uuidv4 } from 'uuid';
 import { returnStatus } from '../util/util';
 
-// const pagesAPI = 'https://us-central1-pagestore-api-e63c8.cloudfunctions.net/pagestoreApi/apps/VUqoXEBLxjrzkWMVNCqp/pages/';
+import Airtable from 'airtable';
+const base = new Airtable({apiKey: 'patdFlbfSagayM2Zj.81e5c96f34f9e00e1604a27e0d7c8fbf7c9a4cda0ddd9f2f2f4c4a9536c06b55'}).base('appKnChYCcpEyb5IP');
+
 
 export const getPages = createAsyncThunk('pages/get', async () => {
   try {
-    console.log('test');
-    // const res = await fetch(pagesAPI);
-    // const data = await res.json();
-    const data = [
-      {
+    const data = []
+
+    const records = await new Promise((resolve, reject) => {
+      base('data')
+        .select({
+          fields: ['title', 'imgUrl', 'category', 'views', 'activeUsers', 'bounceRate'],
+        })
+        .all((err, records) => {
+          if (err) {
+            reject(err);
+          } else {
+            resolve(records);
+          }
+        });
+    });
+    
+    records.forEach((record) => {
+      const pageData = record.fields;
+      const pageItem = {
         itemId: uuidv4(),
-        title: 'A title',
+        title: pageData.title,
         data: {
-          img: 'something',
-          views: 10,
-          activeUsers: 5,
-          bounceRate: 10,
-          category: 'something'
-        }},{
-        itemId: uuidv4(),
-        title: 'A title',
-        data: {
-          img: 'something',
-          views: 10,
-          activeUsers: 5,
-          bounceRate: 10,
-          category: 'else'
-        }},{
-        itemId: uuidv4(),
-        title: 'A title',
-        data: {
-          img: 'something',
-          views: 10,
-          activeUsers: 5,
-          bounceRate: 10,
-          category: 'else'
-        }},{
-        itemId: uuidv4(),
-        title: 'A title',
-        data: {
-          img: 'something',
-          views: 10,
-          activeUsers: 5,
-          bounceRate: 10,
-          category: 'else'
-        }},{
-        itemId: uuidv4(),
-        title: 'A title',
-        data: {
-          img: 'something',
-          views: 10,
-          activeUsers: 5,
-          bounceRate: 10,
-          category: 'else'
-        }},{
-        itemId: uuidv4(),
-        title: 'A title',
-        data: {
-          img: 'something',
-          views: 10,
-          activeUsers: 5,
-          bounceRate: 10,
-          category: 'else'
-        }}
-    ]
-    // return Error('something')
+          img: pageData.imgUrl,
+          views: pageData.views,
+          activeUsers: pageData.activeUsers,
+          bounceRate: pageData.bounceRate,
+          category: pageData.category,
+        },
+      };
+      data.push(pageItem);
+    });
     return data;
   } catch (error) {
     return error;
   }
 });
+
+
 
 const initialState = {
   pageList: [],
@@ -124,6 +98,7 @@ const pagesSlice = createSlice({
       .addCase(getPages.pending, (state) => returnStatus('pending', state))
       .addCase(getPages.fulfilled, (state, action) => {
         const pageList = action.payload;
+        console.log(pageList);
         return { ...state, pageList: [...state.pageList, ...pageList], status: { ...state.status, loading: false, error: '' } };
       })
       .addCase(getPages.rejected, (state, action) => returnStatus('rejected', state, action))
