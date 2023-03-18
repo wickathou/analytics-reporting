@@ -1,6 +1,4 @@
-
-
-export const returnStatus = (type, state, action) => {
+const returnStatus = (type, state, action) => {
   switch (type) {
     case 'pending':
       return { ...state, status: { ...state.status, loading: true, error: '' } };
@@ -13,3 +11,5 @@ export const returnStatus = (type, state, action) => {
   }
   return { ...state };
 };
+
+export default returnStatus;

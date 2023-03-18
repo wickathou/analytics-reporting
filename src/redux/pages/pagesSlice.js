@@ -1,14 +1,12 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { v4 as uuidv4 } from 'uuid';
-import { returnStatus } from '../util/util';
-
 import Airtable from 'airtable';
-const base = new Airtable({apiKey: 'patdFlbfSagayM2Zj.81e5c96f34f9e00e1604a27e0d7c8fbf7c9a4cda0ddd9f2f2f4c4a9536c06b55'}).base('appKnChYCcpEyb5IP');
+import returnStatus from '../util/util';
 
+const base = new Airtable({ apiKey: 'patdFlbfSagayM2Zj.81e5c96f34f9e00e1604a27e0d7c8fbf7c9a4cda0ddd9f2f2f4c4a9536c06b55' }).base('appKnChYCcpEyb5IP');
 
 export const getPages = createAsyncThunk('pages/get', async () => {
   try {
-    const data = []
+    const data = [];
 
     const records = await new Promise((resolve, reject) => {
       base('data')
@@ -23,7 +21,7 @@ export const getPages = createAsyncThunk('pages/get', async () => {
           }
         });
     });
-    
+
     records.forEach((record) => {
       const pageData = record.fields;
       const pageItem = {
@@ -45,8 +43,6 @@ export const getPages = createAsyncThunk('pages/get', async () => {
   }
 });
 
-
-
 const initialState = {
   pageList: [],
   totalViews: 0,
@@ -59,51 +55,20 @@ const initialState = {
 const pagesSlice = createSlice({
   name: 'pages',
   initialState,
-  reducers: {
-    filterpages: (state, { payload }) => {
-      console.log(payload);
-      return {
-        ...state
-      };
-    },
-    clearFilters: (state) => {
-      console.log(state);
-      return {
-      ...state
-      }
-  }},
-  //   filterpages: (state, { payload }) => {
-  //     const filters = payload;
-  //     return {
-  //       ...state,
-  //       filterSettings: {
-  //         filterApplied: true,
-  //         filterSet: state.pageList.filter((item) => item.category === filters),
-  //       },
-  //     };
-  //   },
-  //   clearFilters: (state) => ({
-  //     ...state,
-  //     filterSettings: {
-  //       filterApplied: false,
-  //       filterSet: [],
-  //     },
-  //   }),
-  // },
   extraReducers: (builder) => {
     builder
       .addCase(getPages.pending, (state) => returnStatus('pending', state))
       .addCase(getPages.fulfilled, (state, action) => {
         const pageList = action.payload;
-        let totalViewCount = 0
+        let totalViewCount = 0;
         pageList.forEach((page) => {
-          totalViewCount = totalViewCount + page.data.views
-        })
-        console.log(totalViewCount);
-        console.log(pageList);
-        return { ...state, pageList: [...state.pageList, ...pageList], totalViews: totalViewCount, status: { ...state.status, loading: false, error: '' } };
+          totalViewCount += page.data.views;
+        });
+        return {
+          ...state, pageList: [...state.pageList, ...pageList], totalViews: totalViewCount, status: { ...state.status, loading: false, error: '' },
+        };
       })
-      .addCase(getPages.rejected, (state, action) => returnStatus('rejected', state, action))
+      .addCase(getPages.rejected, (state, action) => returnStatus('rejected', state, action));
   },
 });
 

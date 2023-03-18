@@ -1,18 +1,16 @@
-import React from "react";
-import { useSelector } from "react-redux";
-import { Route, Routes } from "react-router-dom";
-import Details from "./routes/Details";
-import Home from "./routes/Home";
+import React from 'react';
+import { useSelector } from 'react-redux';
+import { Route, Routes } from 'react-router-dom';
+import Details from './routes/Details';
+import Home from './routes/Home';
 
 function App() {
-  const { pageList, filterSettings, status } = useSelector((store) => store.pages);
+  const { pageList } = useSelector((store) => store.pages);
   return (
     <>
       <Routes>
         <Route path="/" element={<Home pages={pageList} />} />
-          {pageList.map((page) => {
-            return <Route path={`/${page.itemId}`} element={<Details page={page}/>}/> 
-          })}
+        {pageList.map((page) => <Route key={page.itemId} path={`/${page.itemId}`} element={<Details page={page} />} />)}
       </Routes>
     </>
   );

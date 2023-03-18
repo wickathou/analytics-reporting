@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
+    "test": "jest",
     "preview": "vite preview",
     "deploy": "gh-pages -d dist",
     "css-linter": "npx stylelint \"**/*.{css,scss}\"",
@@ -21,6 +22,7 @@
     "airtable": "^0.11.6",
     "chart.js": "^4.2.1",
     "gh-pages": "^5.0.0",
+    "prop-types": "^15.8.1",
     "react": "^17.0.2",
     "react-chartjs-2": "^5.2.0",
     "react-dom": "^17.0.2",
@@ -29,22 +31,33 @@
     "uuid": "^9.0.0"
   },
   "devDependencies": {
-    "@babel/core": "^7.21.0",
+    "@babel/core": "^7.21.3",
     "@babel/eslint-parser": "^7.19.1",
     "@babel/plugin-syntax-jsx": "^7.18.6",
+    "@babel/preset-env": "^7.20.2",
     "@babel/preset-react": "^7.18.6",
+    "@jest/globals": "^29.5.0",
+    "@testing-library/dom": "^9.0.0",
+    "@testing-library/jest-dom": "^5.16.5",
+    "@testing-library/react": "^12.1.5",
+    "@testing-library/user-event": "^14.4.3",
+    "@types/jest": "^29.5.0",
     "@vitejs/plugin-react": "^1.0.7",
+    "babel-jest": "^29.5.0",
     "eslint": "^7.32.0",
     "eslint-config-airbnb": "^18.2.1",
     "eslint-plugin-import": "^2.27.5",
     "eslint-plugin-jsx-a11y": "^6.7.1",
     "eslint-plugin-react": "^7.32.2",
     "eslint-plugin-react-hooks": "^4.6.0",
+    "jest": "^27.5.1",
+    "redux-mock-store": "^1.5.4",
     "stylelint": "^13.13.1",
     "stylelint-config-standard": "^21.0.0",
     "stylelint-csstree-validator": "^1.9.0",
     "stylelint-scss": "^3.21.0",
     "vitawind": "^2.2.4",
-    "vite": "^2.7.2"
+    "vite": "^2.7.2",
+    "vite-jest": "^0.1.4"
   }
 }

@@ -1,14 +1,12 @@
-import React from 'react'
-import Layout from '../components/Layout'
-
-
+import React from 'react';
+import Layout from '../components/Layout';
 
 function Home() {
   return (
     <>
-      <Layout route={'home'}/>
+      <Layout route="home" />
     </>
-  )
+  );
 }
 
-export default Home
+export default Home;
