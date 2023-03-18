@@ -5,6 +5,8 @@ import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import Item from '../components/Item';
 import Hero from '../components/Hero';
+import DetailList from '../components/DetailList';
+import Header from '../components/Header';
 
 const initialState = {
   pages: {
@@ -46,9 +48,7 @@ const initialState = {
 };
 const mockStore = configureMockStore()(initialState);
 
-describe('Item tests', () => {
-  test('to render item: ', () => {
-    const mockedItem = {
+const mockedItem = {
       itemId: 'test1',
       title: 'title',
       data: {
@@ -59,6 +59,9 @@ describe('Item tests', () => {
         category: 'category',
       },
     };
+
+describe('Item tests', () => {
+  test('to render item: ', () => {
     render(
       <BrowserRouter>
         <Item page={mockedItem} styler={1} />
@@ -68,25 +71,36 @@ describe('Item tests', () => {
   });
 });
 
+describe('Header tests', () => {
+  test('to render Header: ', () => {
+    render(
+      <BrowserRouter>
+        <Header route={'home'} />
+      </BrowserRouter>,
+    );
+    expect(screen).toMatchSnapshot();
+  });
+});
+
 describe('Hero tests', () => {
-  test('to render item: ', () => {
-    const mockedItem = {
-      itemId: 'test1',
-      title: 'title',
-      data: {
-        img: 'imgUrl',
-        views: 10,
-        activeUsers: 20,
-        bounceRate: 30,
-        category: 'category',
-      },
-    };
+  test('to render hero: ', () => {
     render(
       <Provider store={mockStore}>
         <BrowserRouter>
           <Hero page={mockedItem} route="details" />
         </BrowserRouter>
       </Provider>,
+    );
+    expect(screen).toMatchSnapshot();
+  });
+});
+
+describe('DetailList tests', () => {
+  test('to render DetailList: ', () => {
+    render(
+      <BrowserRouter>
+        <DetailList page={mockedItem}/>
+      </BrowserRouter>
     );
     expect(screen).toMatchSnapshot();
   });
