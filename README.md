@@ -87,6 +87,8 @@ If you like this project feel free to fork it or star it
 
 ## 🙏 Acknowledgments <a name="acknowledgements"></a>
 
+Thanks to the original creator of the design [Nelson Sakwa](https://www.behance.net/sakwadesignstudio) 
+
 Thanks Microverse, learn how to code > [Join Microverse](https://www.microverse.org/?grsf=9m3hq6)
 
 ## 📝 License <a name="license"></a>
