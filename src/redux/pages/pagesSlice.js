@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import Airtable from 'airtable';
-import returnStatus from '../util/util';
+import returnStatus, { totalViewCounter } from '../util/util';
 
 const base = new Airtable({ apiKey: 'patdFlbfSagayM2Zj.81e5c96f34f9e00e1604a27e0d7c8fbf7c9a4cda0ddd9f2f2f4c4a9536c06b55' }).base('appKnChYCcpEyb5IP');
 
@@ -60,10 +60,7 @@ const pagesSlice = createSlice({
       .addCase(getPages.pending, (state) => returnStatus('pending', state))
       .addCase(getPages.fulfilled, (state, action) => {
         const pageList = action.payload;
-        let totalViewCount = 0;
-        pageList.forEach((page) => {
-          totalViewCount += page.data.views;
-        });
+        const totalViewCount = totalViewCounter(pageList);
         return {
           ...state, pageList: [...state.pageList, ...pageList], totalViews: totalViewCount, status: { ...state.status, loading: false, error: '' },
         };

@@ -12,4 +12,12 @@ const returnStatus = (type, state, action) => {
   return { ...state };
 };
 
+export const totalViewCounter = (pageList) => {
+  let totalViewCount = 0;
+  pageList.forEach((page) => {
+    totalViewCount += page.data.views;
+  });
+  return totalViewCount;
+};
+
 export default returnStatus;

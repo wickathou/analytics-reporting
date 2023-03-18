@@ -7,6 +7,7 @@ import Item from '../components/Item';
 import Hero from '../components/Hero';
 import DetailList from '../components/DetailList';
 import Header from '../components/Header';
+import { totalViewCounter } from '../redux/util/util';
 
 const initialState = {
   pages: {
@@ -59,6 +60,13 @@ const mockedItem = {
     category: 'category',
   },
 };
+
+describe('Pure function test', () => {
+  test('view count total function: ', () => {
+    const views = totalViewCounter(initialState.pages.pageList);
+    expect(views).toBe(30);
+  });
+});
 
 describe('Item tests', () => {
   test('to render item: ', () => {
