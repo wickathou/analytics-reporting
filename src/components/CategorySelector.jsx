@@ -12,7 +12,7 @@ function CategorySelector() {
     dispatch(applyFilter(event.target.value))
   };
   return (
-    <select value={categoryFilter} onChange={handleSelectChange}>
+    <select className='px-2 pb-1 pt-2 text-sky-900 bg-white' value={categoryFilter} onChange={handleSelectChange}>
       {categories.map((category) => (
         <option value={category}>
           {category}

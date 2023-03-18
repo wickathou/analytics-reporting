@@ -10,7 +10,9 @@ function App() {
     <>
       <Routes>
         <Route path="/" element={<Home pages={pageList} />} />
-        <Route path="/details" element={<Details/>} />
+          {pageList.map((page) => {
+            return <Route path={`/${page.itemId}`} element={<Details page={page}/>}/> 
+          })}
       </Routes>
     </>
   );

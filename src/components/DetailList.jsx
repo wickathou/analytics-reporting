@@ -1,13 +1,39 @@
+import { faCircleRight } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import React from 'react'
-import Detail from './Detail'
 
-function DetailList() {
+function DetailList({page}) {
+
   return (
     <>
       <ul className='flex flex-col'>
-        <Detail styler={1}/>
-        <Detail styler={2}/>
-        <Detail styler={3}/>
+        <li className={`flex justify-between px-2 py-4 bg-sky-600`}>
+          <h3>
+            Views
+          </h3>
+          <div className='flex justify-between w-1/4'>
+            <p>{page.data.views}</p>
+            <FontAwesomeIcon icon={faCircleRight}/>
+          </div>
+        </li>
+        <li className={`flex justify-between px-2 py-4 bg-sky-700`}>
+          <h3>
+            Bounce Rate
+          </h3>
+          <div className='flex justify-between w-1/4'>
+            <p>{page.data.bounceRate}</p>
+            <FontAwesomeIcon icon={faCircleRight}/>
+          </div>
+        </li>
+        <li className={`flex justify-between px-2 py-4 bg-sky-600`}>
+          <h3>
+            Active Users
+          </h3>
+          <div className='flex justify-between w-1/4'>
+            <p>{page.data.activeUsers}</p>
+            <FontAwesomeIcon icon={faCircleRight}/>
+          </div>
+        </li>
       </ul>
     </>
   )

@@ -13,7 +13,7 @@ export const getPages = createAsyncThunk('pages/get', async () => {
     const records = await new Promise((resolve, reject) => {
       base('data')
         .select({
-          fields: ['title', 'imgUrl', 'category', 'views', 'activeUsers', 'bounceRate'],
+          fields: ['title', 'imgUrl', 'category', 'views', 'activeUsers', 'bounceRate', 'identifier'],
         })
         .all((err, records) => {
           if (err) {
@@ -27,7 +27,7 @@ export const getPages = createAsyncThunk('pages/get', async () => {
     records.forEach((record) => {
       const pageData = record.fields;
       const pageItem = {
-        itemId: uuidv4(),
+        itemId: pageData.identifier,
         title: pageData.title,
         data: {
           img: pageData.imgUrl,
@@ -49,10 +49,7 @@ export const getPages = createAsyncThunk('pages/get', async () => {
 
 const initialState = {
   pageList: [],
-  filterSettings: {
-    filterApplied: false,
-    filterSet: [],
-  },
+  totalViews: 0,
   status: {
     loading: false,
     error: '',
@@ -98,8 +95,13 @@ const pagesSlice = createSlice({
       .addCase(getPages.pending, (state) => returnStatus('pending', state))
       .addCase(getPages.fulfilled, (state, action) => {
         const pageList = action.payload;
+        let totalViewCount = 0
+        pageList.forEach((page) => {
+          totalViewCount = totalViewCount + page.data.views
+        })
+        console.log(totalViewCount);
         console.log(pageList);
-        return { ...state, pageList: [...state.pageList, ...pageList], status: { ...state.status, loading: false, error: '' } };
+        return { ...state, pageList: [...state.pageList, ...pageList], totalViews: totalViewCount, status: { ...state.status, loading: false, error: '' } };
       })
       .addCase(getPages.rejected, (state, action) => returnStatus('rejected', state, action))
   },

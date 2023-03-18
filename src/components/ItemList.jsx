@@ -12,10 +12,20 @@ function ItemList() {
   } else {
     content = pageList
   }
+  let sequencer = [1,2,2,1]
+  let counter = -1
   return (
     <>
       <ul className='grid grid-cols-2'>
-        {content.map((page) => <Item page={page}/>)}
+        {content.map((page) => {
+          if (counter < 3) {
+            counter ++
+          } else if (counter > 2){
+            counter = 0
+          }
+          console.log(counter);
+          return <Item page={page} styler={sequencer[counter]}/>
+        })}
       </ul>
     </>
   )
