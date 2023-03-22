@@ -1,7 +1,7 @@
 {
   "name": "template-vite-react-tailwind-v3",
   "version": "0.0.0",
-  "homepage": "https://wickathou.github.io/analytics-reporting/",
+  "homepage": "https://merry-hummingbird-2e9af5.netlify.app/",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
