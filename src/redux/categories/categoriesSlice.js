@@ -2,10 +2,10 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import Airtable from 'airtable';
 import returnStatus from '../util/util';
 
-const base = new Airtable({ apiKey: 'patdFlbfSagayM2Zj.81e5c96f34f9e00e1604a27e0d7c8fbf7c9a4cda0ddd9f2f2f4c4a9536c06b55' }).base('appKnChYCcpEyb5IP');
+const base = new Airtable({ apiKey: import.meta.env.VITE_AIRTABLE }).base(import.meta.env.VITE_AIRTABLEBASE );
 
 const initialState = {
-  categories: ['All categories'],
+  categories: ['All categories','Uncategorized'],
   categoryFilter: 'All categories',
   status: {
     loading: false,
