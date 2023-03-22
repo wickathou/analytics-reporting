@@ -31,7 +31,6 @@ Vite | Tailwind | React | Redux | GH pages | Jest | fontAwesome
 
 ## 🚀 Live Demo <a name="live-demo"></a>
 
-On Render
 - [Live demo](https://wickathou.github.io/analytics-reporting/)
 
 ## 💻 Getting Started <a name="getting-started"></a>
