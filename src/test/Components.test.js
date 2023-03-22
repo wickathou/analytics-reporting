@@ -67,7 +67,7 @@ describe('Pure function test', () => {
     expect(views).toBe(30);
   });
   test('Formatter function default values: ', () => {
-    const item = dataFormatter(mockedItem.itemId,mockedItem.title,mockedItem.data.img);
+    const item = dataFormatter(mockedItem.itemId, mockedItem.title, mockedItem.data.img);
     expect(item.data.views).toBe(0);
     expect(item.data.bounceRate).toBe(0);
     expect(item.data.activeUsers).toBe(0);

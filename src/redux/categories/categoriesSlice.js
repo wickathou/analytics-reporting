@@ -2,7 +2,8 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import Airtable from 'airtable';
 import returnStatus from '../util/util';
 
-const base = new Airtable({ apiKey: import.meta.env.VITE_AIRTABLE }).base(import.meta.env.VITE_AIRTABLEBASE);
+const base = new Airtable({ apiKey: import.meta.env.VITE_AIRTABLE })
+  .base(import.meta.env.VITE_AIRTABLEBASE);
 
 const initialState = {
   categories: ['All categories', 'Uncategorized'],

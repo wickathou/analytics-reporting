@@ -2,7 +2,8 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import Airtable from 'airtable';
 import returnStatus, { dataFormatter, totalViewCounter } from '../util/util';
 
-const base = new Airtable({ apiKey: import.meta.env.VITE_AIRTABLE }).base(import.meta.env.VITE_AIRTABLEBASE);
+const base = new Airtable({ apiKey: import.meta.env.VITE_AIRTABLE })
+  .base(import.meta.env.VITE_AIRTABLEBASE);
 
 export const getPages = createAsyncThunk('pages/get', async () => {
   try {
@@ -24,7 +25,15 @@ export const getPages = createAsyncThunk('pages/get', async () => {
 
     records.forEach((record) => {
       const pageData = record.fields;
-      const pageItem = dataFormatter(pageData.identifier, pageData.title, pageData.imgUrl, pageData.views, pageData.activeUsers, pageData.bounceRate, pageData.category);
+      const pageItem = dataFormatter(
+        pageData.identifier,
+        pageData.title,
+        pageData.imgUrl,
+        pageData.views,
+        pageData.activeUsers,
+        pageData.bounceRate,
+        pageData.category,
+      );
       data.push(pageItem);
     });
     return data;

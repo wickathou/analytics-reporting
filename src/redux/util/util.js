@@ -13,7 +13,6 @@ const returnStatus = (type, state, action) => {
 };
 
 export const totalViewCounter = (pageList) => {
-  console.log(pageList);
   let totalViewCount = 0;
   pageList.forEach((page) => {
     totalViewCount += page.data.views;
