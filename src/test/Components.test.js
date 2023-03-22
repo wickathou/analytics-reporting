@@ -7,7 +7,7 @@ import Item from '../components/Item';
 import Hero from '../components/Hero';
 import DetailList from '../components/DetailList';
 import Header from '../components/Header';
-import { totalViewCounter } from '../redux/util/util';
+import { dataFormatter, totalViewCounter } from '../redux/util/util';
 
 const initialState = {
   pages: {
@@ -65,6 +65,13 @@ describe('Pure function test', () => {
   test('view count total function: ', () => {
     const views = totalViewCounter(initialState.pages.pageList);
     expect(views).toBe(30);
+  });
+  test('Formatter function default values: ', () => {
+    const item = dataFormatter(mockedItem.itemId,mockedItem.title,mockedItem.data.img);
+    expect(item.data.views).toBe(0);
+    expect(item.data.bounceRate).toBe(0);
+    expect(item.data.activeUsers).toBe(0);
+    expect(item.data.category).toMatch('Uncategorized');
   });
 });
 

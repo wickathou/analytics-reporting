@@ -21,4 +21,16 @@ export const totalViewCounter = (pageList) => {
   return totalViewCount;
 };
 
+export const dataFormatter = (itemId, title, img, views = 0, activeUsers = 0, bounceRate = 0, category = 'Uncategorized') => ({
+  itemId,
+  title,
+  data: {
+    img,
+    views,
+    activeUsers,
+    bounceRate,
+    category,
+  },
+});
+
 export default returnStatus;
